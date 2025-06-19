@@ -39,3 +39,23 @@ alias
 ```
 
 ![image](https://github.com/user-attachments/assets/64d4d22c-35ec-4ace-bae2-46925963d014)
+
+```
+Get-Process
+```
+
+```
+Stop-Process -id 12345
+```
+
+```
+Get-Service |Select-Object Status,Name
+```
+
+```
+Get-Service | Where-Object Status -eq "Running"
+```
+
+```
+Get-Service | Where-Object Status -ne "Running"
+```
