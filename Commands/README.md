@@ -59,3 +59,9 @@ Get-Service | Where-Object Status -eq "Running"
 ```
 Get-Service | Where-Object Status -ne "Running"
 ```
+
+```
+ Test-NetConnection google.com
+```
+
+![image](https://github.com/user-attachments/assets/36f3e110-51b2-4fbc-b389-3a420a4d6bc1)
