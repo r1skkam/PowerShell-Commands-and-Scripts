@@ -65,3 +65,9 @@ Get-Service | Where-Object Status -ne "Running"
 ```
 
 ![image](https://github.com/user-attachments/assets/36f3e110-51b2-4fbc-b389-3a420a4d6bc1)
+
+```
+Test-NetConnection 172.19.4.223 -Port 1514
+```
+
+<img width="361" alt="image" src="https://github.com/user-attachments/assets/5c3b31ac-e329-400a-bfa5-bf83a319f738" />
