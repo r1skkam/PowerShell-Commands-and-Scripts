@@ -4,10 +4,16 @@
 
 **"All intellectual property, including but not limited to ideas, code, and other content contained in this repository, is the property of its respective owners and is acknowledged and credited accordingly."**
 
-## Viewing PowerShell's history
-
-Below file location is PowerShell's history:
+## Retrieving the location of PowerShell's history file:
 
 ```
-"C:\Users\$username\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt"
+(Get-PSReadLineOption).HistorySavePath
+```
+
+C:\Users\username\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+
+## Viewing the contents of PowerShell's history file:
+
+```
+Get-Content (Get-PSReadLineOption).HistorySavePath
 ```
