@@ -79,3 +79,56 @@ Start-Process -Verb RunAs -FilePath "powershell"
 ```
 Start-Process -Verb RunAs -FilePath "cmd"
 ```
+
+# PowerShell Command for MD5 Hash Checking of Files
+
+Here are several ways to check MD5 hashes of files in PowerShell:
+
+## 1. Using Get-FileHash cmdlet (PowerShell 4.0 and later)
+
+```powershell
+Get-FileHash -Algorithm MD5 -Path "C:\path\to\your\file.ext"
+```
+
+For multiple files:
+```powershell
+Get-FileHash -Algorithm MD5 -Path (Get-ChildItem "C:\path\to\files\*.*")
+```
+
+## 2. Comparing two files' hashes
+
+```powershell
+$hash1 = (Get-FileHash -Algorithm MD5 -Path "C:\file1.ext").Hash
+$hash2 = (Get-FileHash -Algorithm MD5 -Path "C:\file2.ext").Hash
+$hash1 -eq $hash2  # Returns True if hashes match
+```
+
+## 3. Verifying against a known hash
+
+```powershell
+$fileHash = (Get-FileHash -Algorithm MD5 -Path "C:\file.ext").Hash
+$knownHash = "D41D8CD98F00B204E9800998ECF8427E"  # Replace with your known hash
+$fileHash -eq $knownHash  # Returns True if matches
+```
+
+## 4. Creating a function for quick MD5 checking
+
+```powershell
+function Get-MD5Hash {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$FilePath
+    )
+    Get-FileHash -Algorithm MD5 -Path $FilePath | Select-Object Algorithm, Hash, Path
+}
+```
+
+Usage:
+```powershell
+Get-MD5Hash "C:\path\to\file.ext"
+```
+
+## Notes:
+- The `Get-FileHash` cmdlet is available in PowerShell 4.0 and later
+- For older PowerShell versions, you would need to use .NET methods
+- MD5 is considered cryptographically broken - consider using SHA256 or SHA512 for security-sensitive applications
