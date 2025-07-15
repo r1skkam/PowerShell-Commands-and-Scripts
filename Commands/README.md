@@ -132,3 +132,19 @@ Get-MD5Hash "C:\path\to\file.ext"
 - The `Get-FileHash` cmdlet is available in PowerShell 4.0 and later
 - For older PowerShell versions, you would need to use .NET methods
 - MD5 is considered cryptographically broken - consider using SHA256 or SHA512 for security-sensitive applications
+
+```
+$directory = "C:\Users\kamkh\Documents\THM\PT1\keys-1627343109071\keys\"
+$knownHash = "3166226048d6ad776370dc105d40d9f8"  # Replace with your known hash
+
+# Get all files in directory and check each one
+Get-ChildItem -Path $directory -File | ForEach-Object {
+    $fileHash = (Get-FileHash -Algorithm MD5 -Path $_.FullName).Hash
+    if ($fileHash -eq $knownHash) {
+        Write-Host "Match found: $($_.Name)" -ForegroundColor Green
+        # If you want full path instead of just filename, use $_.FullName
+    }
+}
+```
+
+<img width="1918" height="1022" alt="image" src="https://github.com/user-attachments/assets/72d06b5e-33c6-4eb4-860a-a6567bafaab9" />
