@@ -148,3 +148,55 @@ Get-ChildItem -Path $directory -File | ForEach-Object {
 ```
 
 <img width="1918" height="1022" alt="image" src="https://github.com/user-attachments/assets/72d06b5e-33c6-4eb4-860a-a6567bafaab9" />
+
+```
+Get-ChildItem -Path "C:\" -Recurse -File -Filter  "interesting-file.txt"
+```
+
+```
+Get-Command | Where-Object -Property CommandType -eq Cmdlet | Measure-Object
+``
+
+## Define the SID you want to translate
+
+```
+$sidString = "S-1-5-21-YOUR-DOMAIN-OR-COMPUTER-ID-HERE-RID"
+
+Get-LocalUser -SID $sidString
+```
+
+```
+Get-LocalUser | Where-Object { $_.PasswordRequired -eq $false } | Select-Object Name, Enabled, PasswordRequired
+```
+
+```
+(Get-LocalGroup).Count
+```
+
+```
+Get-NetIPAddress
+```
+
+```
+(Get-NetTCPConnection -State Listen).Count
+```
+
+```
+Get-NetTCPConnection -State Listen | Select-Object LocalAddress, LocalPort, OwningProcess, @{Name="ProcessName";Expression={(Get-Process -Id $_.OwningProcess -ErrorAction SilentlyContinue).ProcessName}}
+```
+
+
+<img width="1918" height="458" alt="image" src="https://github.com/user-attachments/assets/bc92f65d-2748-464a-a717-49f5ae4a3552" />
+
+
+```
+(Get-HotFix)Count
+```
+
+
+```
+Get-HotFix -Id KB4023834 | Select-Object HotFixID, InstalledOn, Description
+```
+
+
+<img width="782" height="136" alt="image" src="https://github.com/user-attachments/assets/c3ec1247-f945-4d76-84c1-d1440040a1d8" />
